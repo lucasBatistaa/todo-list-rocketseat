@@ -2,25 +2,30 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/colors";
 
 export const styles = StyleSheet.create({
-    container: {
-        borderTopWidth: 1,
-        borderTopColor: "#333333",
+  container: {
+    borderTopWidth: 1,
+    borderTopColor: "#333333",
 
-        gap: 16,
-        paddingVertical: 48,
-        paddingHorizontal: 20,
+    paddingVertical: 48,
+    paddingHorizontal: 20,
 
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+    fontSize: 14,
 
-    title: {
-        
-    },
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-    message: {
-        textAlign: 'center',
-        fontSize: 14,
-        color: colors.gray[300],
-    }
-})
+  title: {
+    marginTop: 16,
+
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: colors.gray[300],
+  },
+
+  message: {
+
+    fontSize: 14,
+    color: colors.gray[300],
+  },
+});
