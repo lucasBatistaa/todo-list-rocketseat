@@ -17,6 +17,7 @@ export default function Home() {
     const [newTaskName, setNewTaskName] = useState<string>('')
 
     const [inputFocus, setInputFocus] = useState(false)
+    const [addTaskButtonIsPressed, setAddTaskButtonIsPressed] = useState(false)
 
     const totalTaskConcluded = tasks.filter(task => task.checked === true)
 
@@ -63,8 +64,14 @@ export default function Home() {
                     onBlur={() => setInputFocus(false)}
                 />
 
-                <TouchableOpacity style={styles.button} onPress={handleAddTask}>
-                    <Text>
+                <TouchableOpacity 
+                    onPressIn={() => setAddTaskButtonIsPressed(true)}
+                    onPressOut={() => setAddTaskButtonIsPressed(false)}
+                    activeOpacity={1}
+                    onPress={handleAddTask}
+                    style={[styles.button, addTaskButtonIsPressed && styles.addTaskButtonPressed]} 
+                >
+                    <Text >
                         <Plus width={16} height={16} />
                     </Text>
                 </TouchableOpacity>

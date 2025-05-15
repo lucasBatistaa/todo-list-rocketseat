@@ -15,16 +15,33 @@ type TaskProps = {
 }
 
 export default function Task({ id, isChecked, name, onToggleCheck, onDelete }: TaskProps) {
+    const [checkButtonIsPressed, setCheckButtonIsPressed] = useState(false)
+    const [trashButtonIsPressed, setTrashButtonIsPressed] = useState(false)
+
     return (
         <View style={[styles.container, isChecked && styles.taskCheckedContainerVariant]}>
-            <TouchableOpacity style={styles.checkButton} onPress={() => onToggleCheck(id)}>
-                {isChecked ? <Checked /> : <Unchecked />}
+            <TouchableOpacity
+                onPressIn={() => setCheckButtonIsPressed(true)}
+                onPressOut={() => setCheckButtonIsPressed(false)}
+                activeOpacity={1}
+                onPress={() => onToggleCheck(id)}
+                style={styles.checkButton}
+            >
+                {isChecked ? <Checked color={checkButtonIsPressed ? '#8284FA' : '#5E60CE'}/> : <Unchecked />}
             </TouchableOpacity>
 
-            <Text style={[styles.name, isChecked && styles.taskCheckedNameVariant]}>{name}</Text>
+            <Text style={[styles.name, isChecked && styles.taskCheckedNameVariant]}>
+                {name}
+            </Text>
 
-            <TouchableOpacity style={styles.trashButton} onPress={() => onDelete(id)}>
-                <Trash />
+            <TouchableOpacity
+                onPressIn={() => setTrashButtonIsPressed(true)}
+                onPressOut={() => setTrashButtonIsPressed(false)}
+                activeOpacity={1}
+                onPress={() => onDelete(id)}
+                style={[styles.trashButton, trashButtonIsPressed && styles.trashButtonPressed]}
+            >
+                <Trash color={trashButtonIsPressed ? '#E25858' : '#808080'}/>
             </TouchableOpacity>
         </View>
     )

@@ -43,6 +43,11 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  trashButtonPressed: {
+    borderRadius: 4,
+    backgroundColor: colors.gray[400]
+  },
+
   taskCheckedContainerVariant: {
     borderColor: colors.gray[500],
   },

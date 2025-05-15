@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
 
+    
     backgroundColor: colors.gray[600],
   },
 
@@ -52,6 +53,10 @@ export const styles = StyleSheet.create({
 
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  addTaskButtonPressed: {
+    backgroundColor: colors.blue
   },
   
   tasks: {
