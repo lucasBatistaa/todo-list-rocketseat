@@ -1,10 +1,15 @@
+import { useState } from "react"
 import { Text, TouchableOpacity, View } from "react-native"
 
+import { typography } from "../../../styles/typography"
+import { styles } from "./styles"
+import { colors } from "../../../styles/colors"
+
 import Unchecked from '../../../assets/unchecked.svg'
+import UncheckedHover from '../../../assets/unchecked-hover.svg'
 import Checked from '../../../assets/checked.svg'
 import Trash from '../../../assets/trash.svg'
-import { styles } from "./styles"
-import { useState } from "react"
+import TrashRed from '../../../assets/trash-red.svg'
 
 type TaskProps = {
     id: string,
@@ -15,6 +20,7 @@ type TaskProps = {
 }
 
 export default function Task({ id, isChecked, name, onToggleCheck, onDelete }: TaskProps) {
+    // const [uncheckedButtonsIsPressed, setUncheckedButtonIsPressed] = useState(false)
     const [checkButtonIsPressed, setCheckButtonIsPressed] = useState(false)
     const [trashButtonIsPressed, setTrashButtonIsPressed] = useState(false)
 
@@ -27,10 +33,10 @@ export default function Task({ id, isChecked, name, onToggleCheck, onDelete }: T
                 onPress={() => onToggleCheck(id)}
                 style={styles.checkButton}
             >
-                {isChecked ? <Checked color={checkButtonIsPressed ? '#8284FA' : '#5E60CE'}/> : <Unchecked />}
+                {isChecked ? <Checked color={checkButtonIsPressed ? colors.purple : colors.purpleDark}/> : checkButtonIsPressed ? <UncheckedHover/> : <Unchecked />}
             </TouchableOpacity>
 
-            <Text style={[styles.name, isChecked && styles.taskCheckedNameVariant]}>
+            <Text style={[styles.name, typography.medium, isChecked && styles.taskCheckedNameVariant]}>
                 {name}
             </Text>
 
@@ -41,7 +47,11 @@ export default function Task({ id, isChecked, name, onToggleCheck, onDelete }: T
                 onPress={() => onDelete(id)}
                 style={[styles.trashButton, trashButtonIsPressed && styles.trashButtonPressed]}
             >
-                <Trash color={trashButtonIsPressed ? '#E25858' : '#808080'}/>
+                {
+                    trashButtonIsPressed ? 
+                        <TrashRed /> :
+                        <Trash/>
+                }
             </TouchableOpacity>
         </View>
     )

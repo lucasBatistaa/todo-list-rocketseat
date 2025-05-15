@@ -9,8 +9,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 48,
     paddingHorizontal: 20,
 
-    fontSize: 14,
-
     alignItems: "center",
     justifyContent: "center",
   },
@@ -18,14 +16,10 @@ export const styles = StyleSheet.create({
   title: {
     marginTop: 16,
 
-    fontSize: 14,
-    fontWeight: 'bold',
     color: colors.gray[300],
   },
 
   message: {
-
-    fontSize: 14,
     color: colors.gray[300],
   },
 });

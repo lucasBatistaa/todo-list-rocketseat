@@ -1,30 +1,38 @@
+import { useState } from "react";
 import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
+
+import Task from "../../components/Task";
+import TasksInfo from "../../components/TaskInfo";
+import EmptyComponentMessage from "../../components/EmptyComponentMessage";
+
 import { styles } from "./styles";
+import { colors } from "../../../styles/colors";
+import { typography } from "../../../styles/typography";
 
 import Logo from '../../../assets/logo.svg'
 import Plus from '../../../assets/plus.svg'
-import { colors } from "../../../styles/colors";
-import TasksInfo from "../../components/TaskInfo";
-import EmptyComponentMessage from "../../components/EmptyComponentMessage";
-import { useState } from "react";
-import Task from "../../components/Task";
+
+type TasksProps = {
+    id: string,
+    checked: boolean,
+    name: string
+}[]
 
 export default function Home() {
-    const [tasks, setTasks] = useState([
-        {id: '1', checked: false, name: 'Tomar banho'}
-    ])
+    const [tasks, setTasks] = useState<TasksProps>([{ id: Date.now().toString(), checked: false, name: 'Tomar banho' }])
 
     const [newTaskName, setNewTaskName] = useState<string>('')
-
     const [inputFocus, setInputFocus] = useState(false)
     const [addTaskButtonIsPressed, setAddTaskButtonIsPressed] = useState(false)
 
     const totalTaskConcluded = tasks.filter(task => task.checked === true)
+    const orderTasks = [...tasks].sort((a, b) => Number(a.checked) - Number(b.checked)) 
 
     const handleAddTask = () => {
         if (newTaskName.trim()) {
+
             setTasks(prevState => [...prevState, {
-                id: '3',
+                id: Date.now().toString(),
                 checked: false,
                 name: newTaskName
             }])
@@ -36,9 +44,9 @@ export default function Home() {
     }
 
     const handleToggleCheck = (id: string) => {
-        setTasks(prevState => 
+        setTasks(prevState =>
             prevState.map(task =>
-                task.id === id ? { ...task, checked: !task.checked} : task
+                task.id === id ? { ...task, checked: !task.checked } : task
             )
         )
     }
@@ -55,7 +63,7 @@ export default function Home() {
 
             <View style={styles.addTaskForm}>
                 <TextInput
-                    style={[styles.input, inputFocus && styles.inputFocus]}
+                    style={[styles.input, inputFocus && styles.inputFocus, typography.large]}
                     placeholder="Adicione uma nova tarefa"
                     placeholderTextColor={colors.gray[300]}
                     onChangeText={setNewTaskName}
@@ -64,14 +72,14 @@ export default function Home() {
                     onBlur={() => setInputFocus(false)}
                 />
 
-                <TouchableOpacity 
+                <TouchableOpacity
                     onPressIn={() => setAddTaskButtonIsPressed(true)}
                     onPressOut={() => setAddTaskButtonIsPressed(false)}
                     activeOpacity={1}
                     onPress={handleAddTask}
-                    style={[styles.button, addTaskButtonIsPressed && styles.addTaskButtonPressed]} 
+                    style={[styles.button, addTaskButtonIsPressed && styles.addTaskButtonPressed]}
                 >
-                    <Text >
+                    <Text>
                         <Plus width={16} height={16} />
                     </Text>
                 </TouchableOpacity>
@@ -79,20 +87,20 @@ export default function Home() {
 
             <View style={styles.tasks}>
                 <View style={styles.tasksInfo}>
-                    <TasksInfo title="Criadas" quantity={tasks.length} />
+                    <TasksInfo title="Criadas" quantity={tasks.length} color={colors.blue} />
 
-                    <TasksInfo title="Concluídas" quantity={totalTaskConcluded.length} />
+                    <TasksInfo title="Concluídas" quantity={totalTaskConcluded.length} color={colors.purple} />
                 </View>
             </View>
 
             <FlatList
                 style={styles.tasksList}
-                data={tasks}
+                data={orderTasks}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <Task
                         id={item.id}
-                        isChecked={item.checked} 
+                        isChecked={item.checked}
                         name={item.name}
                         onToggleCheck={handleToggleCheck}
                         onDelete={handleDeleteTask}
@@ -102,7 +110,7 @@ export default function Home() {
                 ListEmptyComponent={() => (
                     <EmptyComponentMessage />
                 )}
-                ItemSeparatorComponent={() => <View style={{ height: 8 }}/> }
+                ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
             />
         </View>
     )

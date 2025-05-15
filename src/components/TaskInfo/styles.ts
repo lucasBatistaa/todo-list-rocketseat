@@ -3,26 +3,25 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/colors";
 
 export const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        gap: 8,
-    }, 
+  container: {
+    flexDirection: "row",
+    gap: 8,
 
-    title: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        color: colors.blue
-    },
+    justifyContent: "center",
+  },
 
-    quantity: {
-        fontSize: 12,
-        fontWeight: 'bold',
+  quantity: {
+    color: colors.gray[200],
+  },
 
-        paddingHorizontal: 8, 
-        paddingVertical: 2,
-        borderRadius: 999,
+  quantityContainer: {
+    height: 19,
+    width: 24,
 
-        color: colors.gray[200],
-        backgroundColor: colors.gray[400]
-    }
-}) 
+    borderRadius: 999,
+    backgroundColor: colors.gray[400],
+
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+});

@@ -30,8 +30,6 @@ export const styles = StyleSheet.create({
 
   name: {
     flex: 1,
-
-    fontSize: 14,
     color: colors.gray[100],
   },
 

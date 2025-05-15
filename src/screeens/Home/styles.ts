@@ -4,8 +4,6 @@ import { colors } from "../../../styles/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-
-    
     backgroundColor: colors.gray[600],
   },
 
@@ -30,7 +28,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: 52,
 
-    fontSize: 16,
     color: colors.gray[100],
     backgroundColor: colors.gray[500],
 
