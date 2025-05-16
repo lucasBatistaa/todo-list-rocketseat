@@ -1,10 +1,11 @@
-import { Inter_400Regular, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
-import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react';
 
+import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar';
 
-import Home from './src/screeens/Home';
+import { Inter_400Regular, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
+
+import Home from './src/screens/Home';
 
 export default function App() {
   const [loaded, error] = useFonts({

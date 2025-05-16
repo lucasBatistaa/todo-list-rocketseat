@@ -20,7 +20,6 @@ type TaskProps = {
 }
 
 export default function Task({ id, isChecked, name, onToggleCheck, onDelete }: TaskProps) {
-    // const [uncheckedButtonsIsPressed, setUncheckedButtonIsPressed] = useState(false)
     const [checkButtonIsPressed, setCheckButtonIsPressed] = useState(false)
     const [trashButtonIsPressed, setTrashButtonIsPressed] = useState(false)
 

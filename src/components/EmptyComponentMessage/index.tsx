@@ -1,8 +1,9 @@
 import { Text, View } from "react-native";
 
-import Clipboard from '../../../assets/clipboard.svg'
 import { styles } from "./styles";
 import { typography } from "../../../styles/typography";
+
+import Clipboard from '../../../assets/clipboard.svg'
 
 export default function EmptyComponentMessage() {
     return (

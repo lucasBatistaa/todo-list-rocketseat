@@ -22,8 +22,8 @@ export default function Home() {
     const [tasks, setTasks] = useState<TasksProps>([{ id: Date.now().toString(), checked: false, name: 'Tomar banho' }])
 
     const [newTaskName, setNewTaskName] = useState<string>('')
-    const [inputFocus, setInputFocus] = useState(false)
-    const [addTaskButtonIsPressed, setAddTaskButtonIsPressed] = useState(false)
+    const [inputFocus, setInputFocus] = useState<boolean>(false)
+    const [addTaskButtonIsPressed, setAddTaskButtonIsPressed] = useState<boolean>(false)
 
     const totalTaskConcluded = tasks.filter(task => task.checked === true)
     const orderTasks = [...tasks].sort((a, b) => Number(a.checked) - Number(b.checked)) 
